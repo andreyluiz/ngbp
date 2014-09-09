@@ -1,5 +1,6 @@
 angular.module( 'ngBoilerplate.register', [
-  'ui.router'
+  'ui.router',
+  'ui.validate'
 ])
 .config(function config( $stateProvider ) {
   $stateProvider.state( 'register', {

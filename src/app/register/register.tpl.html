@@ -12,33 +12,47 @@
 			<div class="input-group-addon">
 				<i class="fa fa-envelope"></i>
 			</div>
-			<input type="email" class="form-control input-lg" ng-model="email" placeholder="Email">
+			<input type="email" name="email" class="form-control input-lg" required ng-model="email" placeholder="Email">
 		</div>
+	</div>
+	<div class="alert alert-warning" ng-show="form.email.$error.required && form.email.$dirty">
+		<p>Cannot be empty</p>
 	</div>
 	<div class="form-group">
 		<div class="input-group">
 			<div class="input-group-addon">
 				<i class="fa fa-user"></i>
 			</div>
-			<input type="text" class="form-control input-lg" ng-model="username" placeholder="Username">
+			<input type="text" name="username" class="form-control input-lg" required ng-model="username" placeholder="Username">
 		</div>
+	</div>
+	<div class="alert alert-warning" ng-show="form.username.$error.required && form.username.$dirty">
+		<p>Cannot be empty</p>
 	</div>
 	<div class="form-group">
 		<div class="input-group">
 			<div class="input-group-addon">
 				<i class="fa fa-lock"></i>
 			</div>
-			<input type="password" class="form-control input-lg" ng-model="password" placeholder="Password">
+			<input type="password" name="password" required class="form-control input-lg" ng-model="password" placeholder="Password">
 		</div>
+	</div>
+	<div class="alert alert-warning" ng-show="form.password.$error.required && form.password.$dirty">
+		<p>Cannot be empty</p>
 	</div>
 	<div class="form-group">
 		<div class="input-group">
 			<div class="input-group-addon">
 				<i class="fa fa-lock"></i>
 			</div>
-			<input type="password" class="form-control input-lg" ng-model="passwordcheck" placeholder="Confirm password">
+			<input type="password" name="passwordcheck" required class="form-control input-lg" ng-model="passwordcheck" placeholder="Confirm password" ui-validate=" '$value==password' " ui-validate-watch=" 'password' ">
 		</div>
 	</div>
-	<p>Passwords matches? <em>{{ !!form.passwordcheck.$error.validator }}</em></p>
-	<button class="btn btn-primary btn-lg">Sign in</button>
+	<div class="alert alert-warning" ng-show="form.passwordcheck.$error.required && form.password.$dirty">
+		<p>Cannot be empty</p>
+	</div>
+	<div class="alert alert-warning" ng-show="form.passwordcheck.$error.validator && form.password.$dirty">
+		<p>Password check must match</p>
+	</div>
+	<button class="btn btn-primary btn-lg" ng-disabled="!form.$valid">Sign in</button>
 </form>
