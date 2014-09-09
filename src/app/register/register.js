@@ -15,5 +15,19 @@ angular.module( 'ngBoilerplate.register', [
   });
 })
 .controller( 'RegisterCtrl', function HomeController( $scope ) {
+  $scope.required = function(field) {
+    return $scope.form[field].$error.required && $scope.form[field].$dirty;
+  };
 
+  $scope.match = function(field) {
+    return $scope.form[field].$error.validator && $scope.form[field].$dirty;
+  };
+
+  $scope.validEmail = function(field) {
+    return $scope.form[field].$error.email && $scope.form[field].$dirty; 
+  };
+
+  $scope.length = function(field) {
+    return ($scope.form[field].$error.minlength || $scope.form[field].$error.maxlength) && $scope.form[field].$dirty; 
+  };
 });
